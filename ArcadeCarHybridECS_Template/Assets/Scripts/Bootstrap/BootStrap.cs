@@ -38,6 +38,37 @@ public class BootStrap : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        if (QualitySettings.GetQualityLevel() == 5)
+        {
+            Application.targetFrameRate = 60;
+            QualitySettings.vSyncCount = 0;
+        }
+        if (QualitySettings.GetQualityLevel() == 4)
+        {
+            Application.targetFrameRate = 90;
+            QualitySettings.vSyncCount = 0;
+        }
+        if (QualitySettings.GetQualityLevel() == 3)
+        {
+            Application.targetFrameRate = 144;
+            QualitySettings.vSyncCount = 0;
+        }
+        if (QualitySettings.GetQualityLevel() == 2)
+        {
+            Application.targetFrameRate = 240;
+            QualitySettings.vSyncCount = 0;
+        }
+        if (QualitySettings.GetQualityLevel() == 1)
+        {
+            Application.targetFrameRate = 400;
+            QualitySettings.vSyncCount = 0;
+        }
+        if (QualitySettings.GetQualityLevel() == 0)
+        {
+            Application.targetFrameRate = 999;
+            QualitySettings.vSyncCount = 0;
+        }
+
         SpawnCar();
         if (instance != null)
         {

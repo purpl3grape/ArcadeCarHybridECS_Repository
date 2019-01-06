@@ -56,6 +56,14 @@ public class GameHUDSystem : ComponentSystem
 
         CarVelocityText.text = "Car Velocity: " + (Mathf.RoundToInt(CarObject.GetComponent<Rigidbody>().velocity.magnitude)).ToString();
         DesiredVelocityText.text = "Desired Velocity: " + (Mathf.RoundToInt(CarObject.GetComponent<CarInputComponent>().instance.Acceleration)).ToString();
+
+        if (fps < 50)
+        {
+            FPSText.color = Color.red;
+        }
+        else {
+            FPSText.color = Color.green;
+        }
         FPSText.text = "FPS: " + string.Format("\t{0:0.0} ms ({1:0.} fps)", msec, fps);
         InputTypeText.text = "INPUT: " + BootStrap.instance.InputType.ToString();
         DriveTypeText.text = "DRIVE: " + BootStrap.instance.DriveType.ToString();
