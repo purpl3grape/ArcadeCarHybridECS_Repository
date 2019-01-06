@@ -43,7 +43,7 @@ public class CarInputSystem : ComponentSystem
     {
         float DeltaTime = Time.deltaTime;
 
-        var _horizontal = Input.GetAxis("SteeringWheel") * 45;
+        var _horizontal = Input.GetAxis("SteeringWheel") * 30;
         var _vertical = Input.GetAxis("GasPedal");
         var _break = Input.GetAxis("BreakPedal");
         var _clutch = Input.GetAxis("ClutchPedal");
@@ -75,7 +75,7 @@ public class CarInputSystem : ComponentSystem
 
         if (Bootstrap.instance.InputType == InputType.KeyboardAndMouse)
         {
-            _horizontal = Input.GetAxis("SteeringInput") * 45;
+            _horizontal = Input.GetAxis("SteeringInput") * 30;
             _vertical = Input.GetAxis("GasInput");
             _break = Input.GetAxis("BreakInput");
             _clutch = Input.GetAxis("ClutchInput");

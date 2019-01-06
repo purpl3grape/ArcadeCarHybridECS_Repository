@@ -191,7 +191,7 @@ public class FollowCarSystem : MonoBehaviour
 
         public void Execute(int i)
         {
-            renderMatrices[i] = Matrix4x4.TRS(Positions[i] + new Vector3(0f, 5/3f, 0f), Rotations[i], new Vector3(1f, 1f, 1f)/3);
+            renderMatrices[i] = Matrix4x4.TRS(Positions[i] + new Vector3(0f, 5/10f, 0f), Rotations[i], new Vector3(1f, 1f, 1f) / 10);
         }
     }
 

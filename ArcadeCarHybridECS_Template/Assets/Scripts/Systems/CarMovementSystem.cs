@@ -123,20 +123,20 @@ public class CarMovementSystem : ComponentSystem
 
     private Vector3 GetSlope(Transform tr)
     {
-        Physics.Raycast(tr.position - Vector3.forward * 2 - (Vector3.right * .1f) + Vector3.up * 1, Vector3.down, out lr, 5, slopeLayerMask);
-        Physics.Raycast(tr.position - Vector3.forward * 2 + (Vector3.right * .1f) + Vector3.up * 1, Vector3.down, out rr, 5, slopeLayerMask);
-        Physics.Raycast(tr.position + Vector3.forward * 2 - (Vector3.right * .1f) + Vector3.up * 1, Vector3.down, out lf, 5, slopeLayerMask);
-        Physics.Raycast(tr.position + Vector3.forward * 2 + (Vector3.right * .1f) + Vector3.up * 1, Vector3.down, out rf, 5, slopeLayerMask);
-        upDir = (Vector3.Cross(rr.point - Vector3.up, lr.point - Vector3.up) +
-                 Vector3.Cross(lr.point - Vector3.up, lf.point - Vector3.up) +
-                 Vector3.Cross(lf.point - Vector3.up, rf.point - Vector3.up) +
-                 Vector3.Cross(rf.point - Vector3.up, rr.point - Vector3.up)
+        Physics.Raycast(tr.position - Vector3.forward * .1f - (Vector3.right * .1f) + Vector3.up * 1, Vector3.down, out lr, 5, slopeLayerMask);
+        Physics.Raycast(tr.position - Vector3.forward * .1f + (Vector3.right * .1f) + Vector3.up * 1, Vector3.down, out rr, 5, slopeLayerMask);
+        Physics.Raycast(tr.position + Vector3.forward * .1f - (Vector3.right * .1f) + Vector3.up * 1, Vector3.down, out lf, 5, slopeLayerMask);
+        Physics.Raycast(tr.position + Vector3.forward * .1f + (Vector3.right * .1f) + Vector3.up * 1, Vector3.down, out rf, 5, slopeLayerMask);
+        upDir = (Vector3.Cross(rr.point - Vector3.up * 1, lr.point - Vector3.up * 1) +
+                 Vector3.Cross(lr.point - Vector3.up * 1, lf.point - Vector3.up * 1) +
+                 Vector3.Cross(lf.point - Vector3.up * 1, rf.point - Vector3.up * 1) +
+                 Vector3.Cross(rf.point - Vector3.up * 1, rr.point - Vector3.up * 1)
                 ).normalized;
     
-        //Debug.DrawRay(tr.position - Vector3.forward - Vector3.right + Vector3.up, Vector3.down, Color.red);
-        //Debug.DrawRay(tr.position - Vector3.forward + Vector3.right + Vector3.up, Vector3.down, Color.red);
-        //Debug.DrawRay(tr.position + Vector3.forward - Vector3.right + Vector3.up, Vector3.down, Color.red);
-        //Debug.DrawRay(tr.position + Vector3.forward + Vector3.right + Vector3.up, Vector3.down, Color.red);
+        Debug.DrawRay(tr.position - Vector3.forward * 2 - Vector3.right + Vector3.up, Vector3.down, Color.red);
+        Debug.DrawRay(tr.position - Vector3.forward * 2 + Vector3.right + Vector3.up, Vector3.down, Color.red);
+        Debug.DrawRay(tr.position + Vector3.forward * 2 - Vector3.right + Vector3.up, Vector3.down, Color.red);
+        Debug.DrawRay(tr.position + Vector3.forward * 2 + Vector3.right + Vector3.up, Vector3.down, Color.red);
     
         upDir = new Vector3(upDir.x, tr.up.y, upDir.z);
         return upDir;

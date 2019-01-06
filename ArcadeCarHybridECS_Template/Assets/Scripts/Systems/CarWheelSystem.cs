@@ -52,6 +52,10 @@ public class CarWheelSystem : ComponentSystem
             //}
             //else
             //    entity.Transform.localRotation = Quaternion.Lerp(entity.Transform.localRotation, Quaternion.Euler(0, entity.CarInput.instance.Horizontal, 0), Mathf.Abs(entity.CarInput.instance.Horizontal));
+
+            //entity.Transform.localRotation = Quaternion.Euler(0, entity.CarInput.instance.Horizontal, 0);
+
+            //Z Axis: Steer all wheels based on Car Acceleration (FBX wheel importation Rotation correction)
             entity.Transform.localRotation = Quaternion.Euler(0, entity.CarInput.instance.Horizontal, 0);
         }
 
@@ -66,9 +70,14 @@ public class CarWheelSystem : ComponentSystem
                 //else
                 //    entity.Transform.localRotation = Quaternion.Lerp(entity.Transform.localRotation, Quaternion.Euler(0, -entity.CarInput.instance.Horizontal, 0), Mathf.Abs(entity.CarInput.instance.Horizontal));
 
+                //entity.Transform.localRotation = Quaternion.Euler(0, -entity.CarInput.instance.Horizontal, 0);
+
+                //Z Axis: Steer all wheels based on Car Acceleration (FBX wheel importation Rotation correction)
                 entity.Transform.localRotation = Quaternion.Euler(0, -entity.CarInput.instance.Horizontal, 0);
+
             }
-        }else
+        }
+        else
         {
             foreach (var entity in GetEntities<CarRearAxelGroup>())
             {
@@ -79,7 +88,10 @@ public class CarWheelSystem : ComponentSystem
             foreach (var wheel in GetEntities<Wheels>())
         {
             //X Axis: Rotate all wheels based on Car Acceleration
-            wheel.Transform.rotation *= (Quaternion.Euler(wheel.CarInput.instance.Acceleration * .35f, 0, 0));
+            //wheel.Transform.rotation *= (Quaternion.Euler(wheel.CarInput.instance.Acceleration * .35f, 0, 0));
+
+            //Y Axis: Rotate all wheels based on Car Acceleration (FBX wheel importation Rotation correction)
+            wheel.Transform.rotation *= (Quaternion.Euler(0, wheel.CarInput.instance.Acceleration * .35f, 0));
             //Debug.Log(wheel.CarInput.instance.Vertical);
         }
     }
