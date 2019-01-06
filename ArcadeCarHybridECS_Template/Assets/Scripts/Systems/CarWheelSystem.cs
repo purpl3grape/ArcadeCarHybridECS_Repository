@@ -10,8 +10,6 @@ using Unity.Mathematics;
 public class CarWheelSystem : ComponentSystem
 {
     private static BootStrap Bootstrap;
-    private float fps;
-    private float target_fps = 60;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void InitWithScene()

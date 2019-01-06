@@ -1,10 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Unity.Collections;
-using Unity.Entities;
-using Unity.Rendering;
-using Unity.Transforms;
+﻿using UnityEngine;
 
 public enum InputType
 {
@@ -19,6 +13,12 @@ public enum DriveType
     Drift,
 }
 
+public enum RearDisplay
+{
+    Enabled,
+    Disabled,
+}
+
 public class BootStrap : MonoBehaviour
 {
     public GameObject HybridEntityPrefab;
@@ -27,6 +27,7 @@ public class BootStrap : MonoBehaviour
     [Range(30, 120)] public int PhysicsFramesPerSecond;
     public InputType InputType;
     public DriveType DriveType;
+    public RearDisplay RearDisplay;
     public BootStrap instance;
 
     public Mesh mesh;
@@ -34,6 +35,9 @@ public class BootStrap : MonoBehaviour
 
     void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         SpawnCar();
         if (instance != null)
         {

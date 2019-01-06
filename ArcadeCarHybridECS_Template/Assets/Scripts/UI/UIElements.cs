@@ -12,4 +12,5 @@ public class UIElements : MonoBehaviour {
     public Text DriveTypeText;
     public Text GearText;
     public Text CarHealthText;
+    public RawImage CarMirrorRawImage;
 }
