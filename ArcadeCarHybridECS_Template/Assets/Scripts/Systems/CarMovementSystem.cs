@@ -85,7 +85,7 @@ public class CarMovementSystem : ComponentSystem
             float tiltLerpValue = Mathf.Max(0.1f, (0.5f - entity.CarInput.instance.Acceleration / 60));
             entity.Transform.up = Vector3.Lerp(entity.Transform.up, GetSlope(entity.Transform), tiltLerpValue);
 
-            if (GroundCheck(entity.Transform, out normal, 1f))
+            if (GroundCheck(entity.Transform, out normal, 2f))
             {
                 //Ground Move
                 if (Bootstrap.DriveType.Equals(DriveType.TwoWheel) || Bootstrap.DriveType.Equals(DriveType.FourWheel))
@@ -123,10 +123,10 @@ public class CarMovementSystem : ComponentSystem
 
     private Vector3 GetSlope(Transform tr)
     {
-        Physics.Raycast(tr.position - Vector3.forward * .1f - (Vector3.right * .1f) + Vector3.up * 1, Vector3.down, out lr, 5, slopeLayerMask);
-        Physics.Raycast(tr.position - Vector3.forward * .1f + (Vector3.right * .1f) + Vector3.up * 1, Vector3.down, out rr, 5, slopeLayerMask);
-        Physics.Raycast(tr.position + Vector3.forward * .1f - (Vector3.right * .1f) + Vector3.up * 1, Vector3.down, out lf, 5, slopeLayerMask);
-        Physics.Raycast(tr.position + Vector3.forward * .1f + (Vector3.right * .1f) + Vector3.up * 1, Vector3.down, out rf, 5, slopeLayerMask);
+        Physics.Raycast(tr.position - Vector3.forward * 2f - (Vector3.right * 2f) + Vector3.up * 1, Vector3.down, out lr, 5, slopeLayerMask);
+        Physics.Raycast(tr.position - Vector3.forward * 2f + (Vector3.right * 2f) + Vector3.up * 1, Vector3.down, out rr, 5, slopeLayerMask);
+        Physics.Raycast(tr.position + Vector3.forward * 2f - (Vector3.right * 2f) + Vector3.up * 1, Vector3.down, out lf, 5, slopeLayerMask);
+        Physics.Raycast(tr.position + Vector3.forward * 2f + (Vector3.right * 2f) + Vector3.up * 1, Vector3.down, out rf, 5, slopeLayerMask);
         upDir = (Vector3.Cross(rr.point - Vector3.up * 1, lr.point - Vector3.up * 1) +
                  Vector3.Cross(lr.point - Vector3.up * 1, lf.point - Vector3.up * 1) +
                  Vector3.Cross(lf.point - Vector3.up * 1, rf.point - Vector3.up * 1) +
@@ -145,7 +145,7 @@ public class CarMovementSystem : ComponentSystem
     private bool GroundCheck(Transform tr, out float3 hitNormal, float distance)
     {
         iceFloor = false;
-        if (Physics.Raycast(tr.position, Vector3.down, out hit, 1, layerMask))
+        if (Physics.Raycast(tr.position, Vector3.down, out hit, distance, layerMask))
         {
             hitNormal = hit.normal;
             if (hit.transform.CompareTag(iceTag))
